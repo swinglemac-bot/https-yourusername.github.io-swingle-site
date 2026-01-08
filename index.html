@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Frederick Swingle | Personal Website</title>
+
+    <style>
+        :root {
+            --freeze-purple: #e5eaf5;
+            --medium-purple: #d0bdf4;
+            --purple-pain: #8458B3;
+            --heavy-purple: #a28089;
+        }
+
+        * {
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Palatino Linotype", "Book Antiqua", Georgia, serif;
+            background: linear-gradient(
+                120deg,
+                var(--freeze-purple),
+                var(--medium-purple),
+                #ffffff,
+                var(--freeze-purple)
+            );
+            background-size: 400% 400%;
+            animation: gradientFlow 18s ease infinite;
+            color: #2e2e2e;
+        }
+
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 18px 60px;
+            background: rgba(132, 88, 179, 0.92);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(8px);
+        }
+
+        nav .name {
+            color: var(--freeze-purple);
+            font-size: 1.4em;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            transition: letter-spacing 0.3s ease, color 0.3s ease;
+            cursor: default;
+        }
+
+        nav .name:hover {
+            letter-spacing: 2px;
+            color: var(--medium-purple);
+        }
+
+        nav a {
+            color: var(--freeze-purple);
+            text-decoration: none;
+            margin-left: 30px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* HERO */
+        .hero {
+            padding: 170px 80px 120px;
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            gap: 70px;
+            max-width: 1200px;
+            margin: auto;
+            align-items: center;
+        }
+
+        .hero img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow:
+                0 30px 55px rgba(0,0,0,0.25),
+                0 0 0 6px rgba(132, 88, 179, 0.15);
+            filter: saturate(0.9) contrast(0.95);
+            transition:
+                filter 0.6s ease,
+                box-shadow 0.6s ease;
+        }
+
+        .hero img:hover {
+            filter: saturate(1) contrast(1);
+            box-shadow:
+                0 35px 65px rgba(0,0,0,0.35),
+                0 0 0 8px rgba(132, 88, 179, 0.25);
+        }
+
+        .hero-text h1 {
+            font-size: 3.3em;
+            margin: 0;
+            color: var(--purple-pain);
+        }
+
+        /* INVISIBLE QUOTE */
+        .quote {
+            margin-top: 8px;
+            font-style: italic;
+            font-size: 1.05em;
+            color: #666;
+            opacity: 0;
+            max-height: 0;
+            transition: opacity 0.4s ease, max-height 0.4s ease;
+        }
+
+        .hero-text:hover .quote {
+            opacity: 1;
+            max-height: 40px;
+        }
+
+        .hero-text h2 {
+            margin-top: 22px;
+            font-weight: normal;
+            font-size: 1.3em;
+            color: #555;
+        }
+
+        .hero-text p {
+            margin-top: 30px;
+            font-size: 1.1em;
+            line-height: 1.7;
+            max-width: 620px;
+        }
+
+        /* CONTENT */
+        .content {
+            max-width: 1100px;
+            margin: auto;
+            padding: 40px 80px;
+        }
+
+        .section {
+            margin-bottom: 110px;
+            transition: transform 0.4s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-4px);
+        }
+
+        .section-title {
+            font-size: 2.1em;
+            color: var(--purple-pain);
+            margin-bottom: 25px;
+        }
+
+        .section-title::after {
+            content: "";
+            display: block;
+            width: 90px;
+            height: 4px;
+            background: linear-gradient(
+                to right,
+                var(--medium-purple),
+                var(--purple-pain)
+            );
+            margin-top: 10px;
+            border-radius: 2px;
+        }
+
+        ul {
+            padding-left: 22px;
+            line-height: 1.8;
+            font-size: 1.05em;
+        }
+
+        /* GITHUB */
+        .github-box {
+            background: linear-gradient(135deg, var(--purple-pain), var(--heavy-purple));
+            padding: 50px;
+            border-radius: 26px;
+            color: var(--freeze-purple);
+            max-width: 850px;
+            box-shadow: 0 30px 50px rgba(0,0,0,0.25);
+        }
+
+        .github-link {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 15px 36px;
+            background-color: var(--medium-purple);
+            color: var(--purple-pain);
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 30px;
+        }
+
+        /* FLOATING CLOCK */
+        .floating-clock {
+            position: fixed;
+            bottom: 20px;
+            right: 24px;
+            padding: 10px 16px;
+            background: rgba(132, 88, 179, 0.9);
+            color: var(--freeze-purple);
+            font-size: 0.9em;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+            font-variant-numeric: tabular-nums;
+            backdrop-filter: blur(6px);
+            z-index: 999;
+        }
+
+        footer {
+            padding: 70px 0 40px;
+            text-align: center;
+            font-size: 0.9em;
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+
+<nav>
+    <div class="name">Frederick Swingle</div>
+    <div>
+        <a href="#about">About</a>
+        <a href="#interests">Interests</a>
+        <a href="#github">GitHub</a>
+    </div>
+</nav>
+
+<section class="hero">
+    <img src="Swingle.jpg" alt="Frederick Swingle">
+    <div class="hero-text">
+        <h1>Frederick Swingle</h1>
+        <div class="quote">“Hard work beats talent when talent fails to work.”</div>
+        <h2>Cadet Company F1 · Sanford, North Carolina</h2>
+        <p>
+            I am a cadet in Company F1 with a strong interest in mechanical systems,
+            hands-on problem solving, and applied technology.
+        </p>
+    </div>
+</section>
+
+<div class="content">
+
+    <section class="section" id="about">
+        <div class="section-title">About Me</div>
+        <p>
+            Outside of academic and military responsibilities, I spend much of my time riding motorcycles
+            and working on machines. I enjoy understanding how systems function, how they fail,
+            and how they can be improved through direct interaction.
+        </p>
+    </section>
+
+    <section class="section" id="interests">
+        <div class="section-title">Interests & Activities</div>
+        <ul>
+            <li>Motorcycle riding and long-distance travel</li>
+            <li>Mechanical work and maintenance</li>
+            <li>Hands-on experimentation with hardware systems</li>
+        </ul>
+    </section>
+
+    <section class="section" id="github">
+        <div class="section-title">GitHub & Technical Exploration</div>
+        <div class="github-box">
+            <p>
+                I use GitHub to explore hardware-focused and security-oriented projects,
+                including repositories related to devices such as the Flipper Zero.
+            </p>
+            <a href="https://github.com" target="_blank" class="github-link">
+                Inspect the build
+            </a>
+        </div>
+    </section>
+
+</div>
+
+<footer>
+    © Frederick Swingle
+</footer>
+
+<div class="floating-clock" id="clock"></div>
+
+<script>
+    function updateClock() {
+        const now = new Date();
+        document.getElementById("clock").textContent =
+            now.toLocaleDateString() + " • " + now.toLocaleTimeString();
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // Time-aware console Easter egg
+    const hour = new Date().getHours();
+    let greeting;
+    if (hour < 12) greeting = "Good morning.";
+    else if (hour < 18) greeting = "Good afternoon.";
+    else greeting = "Late hours.";
+
+    console.log(
+        `%c${greeting} Curiosity detected.`,
+        "color:#8458B3;font-size:16px;font-weight:bold;"
+    );
+</script>
+
+</body>
+</html>
